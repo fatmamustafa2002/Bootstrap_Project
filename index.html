@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="/images/linkedin.png" />
+    <title>LinkedIn | Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #f3f2ef;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background-color: #0077b5;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #fff !important;
+            padding: 10px;
+        }
+
+        .profile-card,
+        .feed-post,
+        .suggestions {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-card img {
+            width: 100%;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            margin-right: 40px;
+        }
+
+        .suggestions img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .suggestions li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .suggestions button {
+            margin-left: auto;
+            font-size: 12px;
+        }
+
+        .feed-post img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .feed-post .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .feed-post .post-header h6 {
+            margin: 0;
+        }
+
+        .feed-post .post-header small {
+            color: #666;
+        }
+
+        .feed-post .post-actions button {
+            margin-right: 10px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .feed-post .post-actions button:hover {
+            background-color: #f3f2ef;
+            color: black;
+        }
+
+        .class2 {
+            background-color: rgb(10, 102, 194);
+            border-radius: 2px;
+        }
+
+        .footer {
+            width: 100%;
+            background-color: #fff;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer .footer-links {
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .footer .footer-links a {
+            color: #000;
+            margin: 0 8px;
+            font-size: 14px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: rgb(10, 102, 194) !important;
+            text-decoration: underline !important;
+        }
+
+        .footer .dropup {
+            display: inline-block;
+        }
+
+        .footer .dropup .btn {
+            font-size: 14px;
+            padding: 5px 10px;
+            margin-left: 10px;
+        }
+
+        .class1 {
+            font-weight: bold;
+            color: rgb(10, 102, 194) !important;
+        }
+
+        .create-post {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .create-post textarea {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            resize: none;
+        }
+
+        .create-post button {
+            margin-top: 10px;
+            background-color: #0077b5;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .create-post button:hover {
+            background-color: #005f8d;
+        }
+
+        .main-content {
+            padding-top: 70px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding-top: 60px;
+            }
+
+            .navbar-nav {
+                flex-direction: row;
+                justify-content: space-around;
+            }
+
+            .navbar-nav .nav-item {
+                margin: 0 5px;
+            }
+
+            .profile-card,
+            .suggestions {
+                margin-bottom: 10px;
+            }
+
+            .col-md-3,
+            .col-md-6 {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-nav .nav-item {
+                margin: 0 2px;
+            }
+
+            .profile-card img {
+                margin-right: 0;
+            }
+
+            .suggestions li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .suggestions button {
+                margin-left: 0;
+                margin-top: 5px;
+            }
+
+            .footer-links a {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#"><i class="fab fa-linkedin"></i> Linked in</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <form class="form-inline d-none d-lg-flex">
+                <input class="form-control form-control-sm" type="search" placeholder="Search" aria-label="Search" />
+            </form>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item me-4">
+                    <a class="nav-link text-white" href="#"><i class="fas fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item me-4">
+                    <a class="nav-link text-white" href="#"><i class="fas fa-users"></i> My Network</a>
+                </li>
+                <li class="nav-item me-4">
+                    <a class="nav-link text-white" href="#"><i class="fas fa-briefcase"></i> Jobs</a>
+                </li>
+                <li class="nav-item me-4">
+                    <a class="nav-link text-white" href="#"><i class="fas fa-comments"></i> Messaging</a>
+                </li>
+                <li class="nav-item me-4">
+                    <a class="nav-link text-white" href="#"><i class="fas fa-bell"></i> Notifications</a>
+                </li>
+                <!-- Profile Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle me-3" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="./images/Fatma.jpeg" width="30" class="rounded-circle" alt="Profile" />
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="fas fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Settings</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="./login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="main-content container mt-4">
+        <div class="row">
+            <div class="col-md-3 col-12">
+                <div class="profile-card text-center">
+                    <img src="./images/Fatma.jpeg" alt="Profile Picture" />
+                    <h5>Fatma Mustafa</h5>
+                    <p>Software Engineer</p>
+                    <button class="btn btn-outline-primary btn-sm">View Profile</button>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="create-post">
+                    <textarea class="form-control" placeholder="What's on your mind?"></textarea>
+                    <button class="btn btn-primary mt-2">Post</button>
+                </div>
+                <div id="feedContainer"></div>
+                <nav>
+                    <ul class="pagination justify-content-center" id="pagination"></ul>
+                </nav>
+            </div>
+            <div class="col-md-3 col-12">
+                <div class="suggestions">
+                    <h6 style="color: #005f8d;">People you may know</h6>
+                    <hr>
+                    <ul class="list-unstyled">
+                        <li>
+                            <img src="./images/img1.png" width="40" alt="Alice Smith" />
+                            <div>
+                                <strong>Alice Smith</strong><br />
+                                <small>Product Manager</small>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-user-plus"></i> Connect
+                            </button>
+                        </li>
+                        <li>
+                            <img src="./images/img2.png" width="40" alt="Emma Johnson" />
+                            <div>
+                                <strong>Emma Johnson</strong><br />
+                                <small>UX Designer</small>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-user-plus"></i> Connect
+                            </button>
+                        </li>
+                        <li>
+                            <img src="./images/img3.png" width="40" alt="Sophia Brown" />
+                            <div>
+                                <strong>Sophia Brown</strong><br />
+                                <small>Data Scientist</small>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-user-plus"></i> Connect
+                            </button>
+                        </li>
+                        <li>
+                            <img src="./images/img4.png" width="40" alt="Olivia Davis" />
+                            <div>
+                                <strong>Olivia Davis</strong><br />
+                                <small>Product Manager</small>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-user-plus"></i> Connect
+                            </button>
+                        </li>
+                        <li>
+                            <img src="./images/img5.png" width="40" alt="Isabella Wilson" />
+                            <div>
+                                <strong>Isabella Wilson</strong><br />
+                                <small>UX Designer</small>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-user-plus"></i> Connect
+                            </button>
+                        </li>
+                        <li>
+                            <img src="./images/img6.png" width="40" alt="Mia Martinez" />
+                            <div>
+                                <strong>Mia Martinez</strong><br />
+                                <small>Data Scientist</small>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-user-plus"></i> Connect
+                            </button>
+                        </li>
+                        <li>
+                            <img src="./images/img7.png" width="40" alt="Charlotte Taylor" />
+                            <div>
+                                <strong>Charlotte Taylor</strong><br />
+                                <small>Product Manager</small>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-user-plus"></i> Connect
+                            </button>
+                        </li>
+                        <li>
+                            <img src="./images/img8.png" width="40" alt="Amelia Thomas" />
+                            <div>
+                                <strong>Amelia Thomas</strong><br />
+                                <small>UX Designer</small>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-user-plus"></i> Connect
+                            </button>
+                        </li>
+                        <li>
+                            <img src="./images/img9.png" width="40" alt="Harper White" />
+                            <div>
+                                <strong>Harper White</strong><br />
+                                <small>Data Scientist</small>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-user-plus"></i> Connect
+                            </button>
+                        </li>
+                        <li>
+                            <img src="./images/img10.png" width="40" alt="Evelyn Harris" />
+                            <div>
+                                <strong>Evelyn Harris</strong><br />
+                                <small>Product Manager</small>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-user-plus"></i> Connect
+                            </button>
+                        </li>
+                        <li>
+                            <img src="./images/img1.png" width="40" alt="Lily Adams" />
+                            <div>
+                                <strong>Lily Adams</strong><br />
+                                <small>UX Designer</small>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-user-plus"></i> Connect
+                            </button>
+                        </li>
+                        <li>
+                            <img src="./images/img2.png" width="40" alt="Grace Campbell" />
+                            <div>
+                                <strong>Grace Campbell</strong><br />
+                                <small>Data Scientist</small>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-user-plus"></i> Connect
+                            </button>
+                        </li>
+                        <li>
+                            <img src="./images/img3.png" width="40" alt="Zoe Mitchell" />
+                            <div>
+                                <strong>Zoe Mitchell</strong><br />
+                                <small>Product Manager</small>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-user-plus"></i> Connect
+                            </button>
+                        </li>
+                        <li>
+                            <img src="./images/img4.png" width="40" alt="Hannah Carter" />
+                            <div>
+                                <strong>Hannah Carter</strong><br />
+                                <small>UX Designer</small>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-user-plus"></i> Connect
+                            </button>
+                        </li>
+                        <li>
+                            <img src="./images/img5.png" width="40" alt="Scarlett Brooks" />
+                            <div>
+                                <strong>Scarlett Brooks</strong><br />
+                                <small>Data Scientist</small>
+                            </div>
+                            <button class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-user-plus"></i> Connect
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer bg-light text-muted m-1 p-2">
+        <div class="container">
+            <div class="row text-center">
+                <!-- Branding -->
+                <div class="col-12 mb-2">
+                    <span class="text-decoration-none">
+                        <span class="text-dark fw-bold">Linked</span>
+                        <span class="fw-bold text-light bg-dark px-2 rounded">in</span>
+                        <span class="text-muted">&#64; 2025</span>
+                    </span>
+                </div>
+
+                <!-- Footer Items -->
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-1 col-md-4 col-12 mb-2">
+                        <a href="#" class="text-decoration-none text-muted">About</a>
+                    </div>
+                    <div class="col-lg-1 col-md-4 col-12 mb-2">
+                        <a href="#" class="text-decoration-none text-muted">Accessibility</a>
+                    </div>
+                    <div class="col-lg-1 col-md-4 col-12 mb-2">
+                        <a href="#" class="text-decoration-none text-muted">User Agreement</a>
+                    </div>
+                    <div class="col-lg-1 col-md-4 col-12 mb-2">
+                        <a href="#" class="text-decoration-none text-muted">Privacy Policy</a>
+                    </div>
+                    <div class="col-lg-1 col-md-4 col-12 mb-2">
+                        <a href="#" class="text-decoration-none text-muted">Cookie Policy</a>
+                    </div>
+                    <div class="col-lg-1 col-md-4 col-12 mb-2">
+                        <a href="#" class="text-decoration-none text-muted">Copyright Policy</a>
+                    </div>
+                    <div class="col-lg-1 col-md-4 col-12 mb-2">
+                        <a href="#" class="text-decoration-none text-muted">Brand Policy</a>
+                    </div>
+                    <div class="col-lg-1 col-md-4 col-12 mb-2">
+                        <a href="#" class="text-decoration-none text-muted">Guest Controls</a>
+                    </div>
+                    <div class="col-lg-1 col-md-4 col-12 mb-2">
+                        <a href="#" class="text-decoration-none text-muted">Community Guidelines</a>
+                    </div>
+                    <!-- Dropdown for Languages -->
+                    <div class="col-lg-1 col-md-4 col-12 mb-2">
+                        <div class="dropdown">
+                            <button class="btn btn-light btn-sm dropdown-toggle border-0 text-muted" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="fw-bold">Languages</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item" href="#">العربية (Arabic)</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Français (French)</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Español (Spanish)</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Deutsch (German)</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">中文 (Chinese)</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Português (Portuguese)</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">हिन्दी (Hindi)</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="#">日本語 (Japanese)</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        var posts = [];
+        var itemsPerPage = 5;
+        var currentPage = 1;
+
+        function generateFakePosts() {
+            for (var i = 1; i <= 60; i++) {
+                posts.push({
+                    id: i,
+                    title: "Post Title " + i,
+                    content: "This is some sample content for post number " + i + ".",
+                    author: "Alice Smith",
+                    authorImage: "./images/img4.png",
+                    hours: i,
+                });
+            }
+        }
+
+        function displayPosts(page) {
+            var container = document.getElementById("feedContainer");
+            container.innerHTML = "";
+            var start = (page - 1) * itemsPerPage;
+            var end = start + itemsPerPage;
+            var pagePosts = posts.slice(start, end);
+            pagePosts.forEach(function (post) {
+                var div = document.createElement("div");
+                div.className = "feed-post";
+                div.innerHTML = `
+                    <div>
+                        <div class="post-header">
+                            <img src="${post.authorImage}" width="30" alt="${post.author
+                    }">
+                            <div>
+                                <h6>${post.author}</h6>
+                                <small>${post.hours > 24
+                        ? Math.ceil(post.hours / 24) + " days"
+                        : post.hours + " hours"
+                    } ago</small>
+                            </div>
+                        </div>
+                        <h5>${post.title}</h5>
+                        <p>${post.content}</p>
+                        <div class="post-actions">
+                            <button class="btn btn-outline-secondary btn-sm"><i class="far fa-thumbs-up"></i> Like</button>
+                            <button class="btn btn-outline-secondary btn-sm"><i class="far fa-comment"></i> Comment</button>
+                            <button class="btn btn-outline-secondary btn-sm"><i class="far fa-share-square"></i> Share</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function setupPagination() {
+            var pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+            var pageCount = Math.ceil(posts.length / itemsPerPage);
+            for (var i = 1; i <= pageCount; i++) {
+                var li = document.createElement("li");
+                li.className = "page-item " + (i === currentPage ? "active" : "");
+                var a = document.createElement("a");
+                a.className = "page-link";
+                a.href = "#";
+                a.innerText = i;
+                a.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    currentPage = parseInt(this.innerText);
+                    displayPosts(currentPage);
+                    setupPagination();
+                });
+                li.appendChild(a);
+                pagination.appendChild(li);
+            }
+        }
+
+        window.addEventListener("load", function () {
+            generateFakePosts();
+            displayPosts(currentPage);
+            setupPagination();
+        });
+    </script>
+</body>
+
+</html>
